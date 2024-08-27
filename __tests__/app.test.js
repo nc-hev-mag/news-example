@@ -14,7 +14,12 @@ afterAll(() => {
 });
 
 test.only("404", () => {
-	return request(app).get("/aghhthht").expect(404);
+	return request(app)
+		.get("/aghhthht")
+		.expect(404)
+		.then(({ body }) => {
+			expect(body.msg).toBe("not found");
+		});
 });
 
 describe("GET /api", () => {
